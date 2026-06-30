@@ -84,15 +84,15 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="space-y-6 max-w-xl">
+    <div className="animate-fade-in-up max-w-xl space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Settings</h2>
-        <p className="text-sm text-gray-500 mt-0.5">Configure your emergency fund targets</p>
+        <h2 className="text-[22px] font-semibold tracking-tight text-slate-900">Settings</h2>
+        <p className="mt-1 text-sm text-slate-400">Configure your emergency fund targets</p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Emergency fund target</CardTitle>
+          <CardTitle className="text-[15px] text-slate-900">Emergency fund target</CardTitle>
           <CardDescription>
             Target = monthly expenses × months + medical buffer
           </CardDescription>
@@ -179,7 +179,7 @@ export default function SettingsPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Projection settings</CardTitle>
+          <CardTitle className="text-[15px] text-slate-900">Projection settings</CardTitle>
           <CardDescription>Used in the Projections page to model purchasing power</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
