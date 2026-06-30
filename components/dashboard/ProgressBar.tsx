@@ -12,12 +12,12 @@ export function ProgressBar({ progressPct, label }: ProgressBarProps) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-1.5">
-        <span className="text-sm font-medium text-gray-700">{label ?? 'Progress to target'}</span>
-        <span className="text-sm font-semibold text-gray-900">{formatPercent(pct)}</span>
+      <div className="mb-2 flex items-center justify-between">
+        <span className="text-sm font-medium text-slate-600">{label ?? 'Progress to target'}</span>
+        <span className="text-sm font-semibold tabular-nums text-slate-900">{formatPercent(pct)}</span>
       </div>
       <div
-        className="h-3 w-full rounded-full bg-gray-100 overflow-hidden"
+        className="h-2.5 w-full overflow-hidden rounded-full bg-slate-100"
         role="progressbar"
         aria-valuenow={pct}
         aria-valuemin={0}
@@ -25,7 +25,7 @@ export function ProgressBar({ progressPct, label }: ProgressBarProps) {
         aria-label={label ?? 'Progress to target'}
       >
         <div
-          className={`h-full rounded-full transition-all duration-500 ${color}`}
+          className={`h-full rounded-full transition-[width] duration-700 ease-out ${color}`}
           style={{ width: `${pct}%` }}
         />
       </div>

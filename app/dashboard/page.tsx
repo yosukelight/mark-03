@@ -17,36 +17,33 @@ export default function DashboardPage() {
   const needsSetup = settings.monthlyExpenses === 0;
 
   return (
-    <div className="space-y-6">
+    <div className="animate-fade-in-up space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Dashboard</h2>
-          <p className="text-sm text-gray-500 mt-0.5">Your emergency fund at a glance</p>
+          <h2 className="text-[22px] font-semibold tracking-tight text-slate-900">Dashboard</h2>
+          <p className="mt-1 text-sm text-slate-400">Your emergency fund at a glance</p>
         </div>
       </div>
 
       {needsSetup && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
-          <strong>Setup required:</strong> Configure your monthly expenses and target in{' '}
-          <Link href="/settings" className="underline font-medium">
-            Settings
-          </Link>{' '}
-          to see accurate progress.
-          <div className="mt-2">
-            <Button size="sm" variant="outline" asChild>
-              <Link href="/settings">
-                <Settings2 className="h-4 w-4" />
-                Go to Settings
-              </Link>
-            </Button>
+        <div className="flex flex-col gap-3 rounded-2xl border border-amber-200/70 bg-amber-50/70 p-4 text-sm text-amber-900 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <strong className="font-semibold">Setup required.</strong> Configure your monthly
+            expenses and target to see accurate progress.
           </div>
+          <Button size="sm" variant="outline" asChild className="shrink-0">
+            <Link href="/settings">
+              <Settings2 className="h-4 w-4" />
+              Go to Settings
+            </Link>
+          </Button>
         </div>
       )}
 
       <SummaryCards summary={summary} />
 
       <Card>
-        <CardContent className="pt-6">
+        <CardContent className="p-6">
           <ProgressBar progressPct={summary.progressPct} />
         </CardContent>
       </Card>
@@ -54,7 +51,7 @@ export default function DashboardPage() {
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Fund breakdown</CardTitle>
+            <CardTitle className="text-[15px] text-slate-900">Fund breakdown</CardTitle>
           </CardHeader>
           <CardContent>
             <FundDonutChart funds={funds} />
@@ -63,33 +60,33 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base">Target details</CardTitle>
+            <CardTitle className="text-[15px] text-slate-900">Target details</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-500">Monthly expenses</span>
-              <span className="font-medium">
+              <span className="text-slate-500">Monthly expenses</span>
+              <span className="font-medium text-slate-700">
                 {new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(
                   settings.monthlyExpenses,
                 )}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Target months</span>
-              <span className="font-medium">{settings.targetMonths} months</span>
+              <span className="text-slate-500">Target months</span>
+              <span className="font-medium text-slate-700">{settings.targetMonths} months</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-500">Medical buffer</span>
-              <span className="font-medium">
+              <span className="text-slate-500">Medical buffer</span>
+              <span className="font-medium text-slate-700">
                 {new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(
                   settings.medicalBuffer,
                 )}
               </span>
             </div>
-            <hr className="border-gray-100" />
+            <hr className="border-slate-100" />
             <div className="flex justify-between font-semibold">
-              <span className="text-gray-700">Total target</span>
-              <span className="text-blue-600">
+              <span className="text-slate-700">Total target</span>
+              <span className="text-indigo-600">
                 {new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP' }).format(
                   summary.target,
                 )}

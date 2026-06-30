@@ -31,8 +31,8 @@ export function FundCard({ fund, sharePct, onUpdate, onDelete }: FundCardProps) 
 
   return (
     <>
-      <Card>
-        <CardContent className="pt-5">
+      <Card className="transition-shadow hover:shadow-[0_4px_16px_-4px_rgb(0_0_0_/_0.08)]">
+        <CardContent className="p-5">
           <div className="flex items-start justify-between gap-2">
             <div className="flex items-center gap-2 min-w-0">
               <span
@@ -41,8 +41,8 @@ export function FundCard({ fund, sharePct, onUpdate, onDelete }: FundCardProps) 
                 aria-hidden="true"
               />
               <div className="min-w-0">
-                <p className="font-medium text-gray-900 truncate">{fund.name}</p>
-                <Badge variant="secondary" className="mt-0.5 text-xs">
+                <p className="truncate font-medium text-slate-900">{fund.name}</p>
+                <Badge variant="secondary" className="mt-1 text-xs">
                   {FUND_TYPE_LABELS[fund.type]}
                 </Badge>
               </div>
@@ -68,25 +68,25 @@ export function FundCard({ fund, sharePct, onUpdate, onDelete }: FundCardProps) 
             </div>
           </div>
 
-          <div className="mt-4 grid grid-cols-3 gap-3 text-sm">
+          <div className="mt-4 grid grid-cols-3 gap-3 border-t border-slate-100 pt-4 text-sm">
             <div>
-              <p className="text-gray-500">Balance</p>
-              <p className="font-semibold text-gray-900">{formatPHP(fund.balance)}</p>
+              <p className="text-xs text-slate-400">Balance</p>
+              <p className="mt-0.5 font-semibold text-slate-900">{formatPHP(fund.balance)}</p>
             </div>
             <div>
-              <p className="text-gray-500">Share</p>
-              <p className="font-semibold text-gray-900">{formatPercent(sharePct)}</p>
+              <p className="text-xs text-slate-400">Share</p>
+              <p className="mt-0.5 font-semibold text-slate-900">{formatPercent(sharePct)}</p>
             </div>
             <div>
-              <p className="text-gray-500">Exp. return</p>
-              <p className="font-semibold text-gray-900">
+              <p className="text-xs text-slate-400">Exp. return</p>
+              <p className="mt-0.5 font-semibold text-slate-900">
                 {formatPercent(fund.expectedReturnPct)}/yr
               </p>
             </div>
           </div>
 
           {fund.notes && (
-            <p className="mt-3 text-xs text-gray-400 truncate" title={fund.notes}>
+            <p className="mt-3 truncate text-xs text-slate-400" title={fund.notes}>
               {fund.notes}
             </p>
           )}
