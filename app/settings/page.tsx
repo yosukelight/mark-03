@@ -46,6 +46,9 @@ export default function SettingsPage() {
   const [monthlyExpenses, setMonthlyExpenses] = useState(String(settings.monthlyExpenses));
   const [medicalBuffer, setMedicalBuffer] = useState(String(settings.medicalBuffer));
   const [inflationRate, setInflationRate] = useState(String(settings.inflationRatePct));
+  const [contributionGoal, setContributionGoal] = useState(
+    settings.monthlyContributionGoal != null ? String(settings.monthlyContributionGoal) : '',
+  );
   const [saved, setSaved] = useState(false);
   const [resetOpen, setResetOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -61,6 +64,10 @@ export default function SettingsPage() {
     const months =
       monthsMode === 'custom' ? parseFloat(customMonths) : parseFloat(monthsMode);
     if (isNaN(months) || months < 1) errs.targetMonths = 'Must be at least 1 month';
+    if (contributionGoal.trim() !== '') {
+      const goal = parseFloat(contributionGoal);
+      if (isNaN(goal) || goal < 0) errs.contributionGoal = 'Must be a non-negative number';
+    }
     return errs;
   }
 
@@ -77,6 +84,8 @@ export default function SettingsPage() {
       medicalBuffer: parseFloat(medicalBuffer),
       inflationRatePct: parseFloat(inflationRate),
       targetMonths,
+      monthlyContributionGoal:
+        contributionGoal.trim() === '' ? undefined : parseFloat(contributionGoal),
     });
     setErrors({});
     setSaved(true);
@@ -171,6 +180,35 @@ export default function SettingsPage() {
             {errors.medicalBuffer && (
               <p id="medical-buffer-error" className="text-xs text-red-600" role="alert">
                 {errors.medicalBuffer}
+              </p>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-[15px] text-slate-900">Contribution goal</CardTitle>
+          <CardDescription>
+            Optional monthly savings goal, shown on the Contributions page
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-1.5">
+            <Label htmlFor="contribution-goal">Monthly contribution goal (PHP)</Label>
+            <Input
+              id="contribution-goal"
+              type="number"
+              min="0"
+              step="500"
+              value={contributionGoal}
+              onChange={(e) => setContributionGoal(e.target.value)}
+              placeholder="Leave empty for no goal"
+              aria-describedby={errors.contributionGoal ? 'contribution-goal-error' : undefined}
+            />
+            {errors.contributionGoal && (
+              <p id="contribution-goal-error" className="text-xs text-red-600" role="alert">
+                {errors.contributionGoal}
               </p>
             )}
           </div>
